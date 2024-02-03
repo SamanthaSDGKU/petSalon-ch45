@@ -1,0 +1,58 @@
+/*global*/
+*{
+    padding: 0;
+    margin: 0;
+}
+body{
+    font-family: 'Single Day', cursive;
+}
+img{
+    max-width: 100%;
+}
+a{
+    text-decoration: none;
+}
+/*utilities*/
+.flex-container{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 8rem;
+}
+/*header*/
+.site-init{
+    background-color: #D6FFF6;
+    height: 15rem;
+}
+/*main*/
+
+/*welcome*/
+.welcome-section{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+.welcome-img{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #4DCCBD;
+    height: 30rem;
+}
+.welcome-img img{
+    display: block;
+    width:20rem;
+    border-radius: 20px;
+}
+/*services*/
+
+/*footer*/
+.site-footer{
+    background-color: #231651;
+    height: 10rem;
+    color:white;
+}
+/*
+#FF8484
+#231651
+#2374AB
+*/
