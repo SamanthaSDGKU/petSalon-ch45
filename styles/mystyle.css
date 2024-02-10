@@ -56,3 +56,26 @@ a{
 #231651
 #2374AB
 */
+
+/*cards*/
+#pets{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    column-gap: 1rem;
+    row-gap: 1rem;
+}
+.petCard{
+    background-color: #dedede;
+    border-radius: 5px;
+    padding: 1rem;
+}
+
+.alert-error{
+    background-color: rgb(246, 163, 163);
+}
+.alert-success{
+    background-color: green;
+}
+.hidden{
+    display: none;
+}

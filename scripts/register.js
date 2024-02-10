@@ -1,39 +1,79 @@
-let salon={
-    name:"The fashion pet",
-    phone:"999-999-9999",
-    address:{
-        street:"Palm",
-        number:"262-K",
-        zip:"22333"
-    },
-    pets:[
-        {
-            name:"Scooby",
-            age:60
-        },
-        {
-            name:"Scrappy",
-            age:50
-        },
-        {
-            name:"Tweety bird",
-            age:80
-        }
-    ]  //pets array
+//constructor
+function Pet(n,a,g,s){
+    this.name=n;
+    this.age=a;
+    this.gender=g;
+    this.service=s;
 }
 
-console.log(salon.pets[0].name);
-console.log(salon.pets[1].name);
-console.log(salon.pets[2].name);
-console.log(salon.pets.length);
-
-//use a for loop to travel the array
-
-function displayFooterInfo(){
-    
-    document.getElementById("info").innerHTML=`
-    <p> Welcome to the ${salon.name} is located in ${salon.address.street} ${salon.address.number} ${salon.address.zip}</p>
-    `;
-    
+function getE(id){
+    return document.getElementById(id);
 }
-displayFooterInfo();
+//get elements from HTML
+let inputName= getE("txtName");
+let inputAge= getE("txtAge");
+let inputGender= getE("txtGender");
+let inputService=getE("txtService");
+
+function isValid(aPet){
+    let validation=true;
+    //clear the style
+    //document.querySelectorAll("inputs");
+    getE("txtName").classList.remove("alert-error");
+    getE("txtAge").classList.remove("alert-error");
+    if(aPet.name==""){
+        //the pet is not valid
+        validation=false;
+        getE("txtName").classList.add("alert-error");
+    }
+    if(aPet.age==""){
+        validation=false;
+        getE("txtAge").classList.add("alert-error");
+    }
+    return validation;
+}
+
+function showNotifications(msg,type){
+    getE("notifications").classList.remove("hidden");
+    getE("notifications").innerHTML=`<p class="${type}">${msg} </p>`;
+    
+    setTimeout(function(){
+        getE("notifications").classList.add("hidden");
+    },3000);
+}
+function register(){
+    //1)getting value
+    //2) create the newPet using the constructor
+    let newPet = new Pet(inputName.value,inputAge.value,inputGender.value,inputService.value);
+    console.log(newPet);
+
+    if(isValid(newPet)==true){
+        //3) push the newPet to the array
+        salon.pets.push(newPet);
+        //4) call display function
+        displayPetCards();
+        //5) clear the input
+        inputName.value="";
+        inputAge.value="";
+        inputGender.value="";
+        inputService.value="";
+
+        showNotifications("Successful registration","alert-success");
+    }else{
+        showNotifications("Please fill out all the required fields","alert-error");
+    }
+}
+
+function init(){
+    //creating predefined obj
+    
+    let pet3=new Pet("Speedy",70,"Male","Grooming");
+    let pet4=new Pet("Scooby2",60,"Male","Vaccine");
+    let pet5=new Pet("Scrappy2",50,"Male","Nails");
+    let pet6=new Pet("Speedy2",70,"Male","Grooming");
+    salon.pets.push(pet3,pet4,pet5,pet6);
+    //exacuting fn
+    displayPetCards();
+}
+window.onload=init;// wait to render the HTML
+
