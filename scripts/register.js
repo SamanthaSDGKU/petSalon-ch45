@@ -1,9 +1,11 @@
+let petID=0;
 //constructor
 function Pet(n,a,g,s){
     this.name=n;
     this.age=a;
     this.gender=g;
     this.service=s;
+    this.id=petID++;//internal id
 }
 
 function getE(id){
@@ -63,14 +65,25 @@ function register(){
         showNotifications("Please fill out all the required fields","alert-error");
     }
 }
-
+function deletePet(petID){
+    let deleteIndex;// to get the index of the array (position of the obj)
+    for(let i=0;i<salon.pets.length;i++){
+        let pet = salon.pets[i];
+        if(pet.id==petID){
+            deleteIndex=i;
+            break;
+        }
+    }
+    getE(petID).remove();//remove from the HMTL
+    salon.pets.splice(deleteIndex,1);//remove the pet from the array
+}
 function init(){
     //creating predefined obj
     
     let pet3=new Pet("Speedy",70,"Male","Grooming");
-    let pet4=new Pet("Scooby2",60,"Male","Vaccine");
-    let pet5=new Pet("Scrappy2",50,"Male","Nails");
-    let pet6=new Pet("Speedy2",70,"Male","Grooming");
+    let pet4=new Pet("Scooby",60,"Male","Vaccine");
+    let pet5=new Pet("Scrappy",50,"Male","Nails");
+    let pet6=new Pet("Tweety",70,"Male","Grooming");
     salon.pets.push(pet3,pet4,pet5,pet6);
     //exacuting fn
     displayPetCards();
